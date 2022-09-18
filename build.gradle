@@ -1,3 +1,5 @@
+
+
 plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("io.micronaut.application") version "3.5.3"
@@ -17,9 +19,12 @@ dependencies {
     implementation("jakarta.annotation:jakarta.annotation-api")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
-
+    implementation('io.projectreactor:reactor-core')
 }
 
+compileJava {
+    options.encoding = "UTF-8"
+}
 
 application {
     mainClass.set("pulsar.micronaut.Application")
@@ -31,7 +36,6 @@ java {
 
 graalvmNative{
     toolchainDetection = false
-    graalArch.set("amd64")
 }
 micronaut {
     runtime("netty")
